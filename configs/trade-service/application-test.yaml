@@ -1,0 +1,9 @@
+spring:
+
+kis:
+  app:
+    key: ${KIS_APP_KEY}
+    secret: ${KIS_APP_SECRET}
+    access: ${KIS_APP_ACCESS}
+  url:
+    ws: ${KIS_WS_URL}
