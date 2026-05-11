@@ -56,6 +56,11 @@ spring:
         distance-type: COSINE_DISTANCE
         dimensions: 1536
 
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
+
 assistant:
   llm:
     model-name: ${OPENAI_CHAT_MODEL}
