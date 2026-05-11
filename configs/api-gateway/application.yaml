@@ -26,31 +26,43 @@ spring:
               uri: lb://COMPETITION-SERVICE
               predicates:
                 - Path=/api/competitions/**
+              filters:
+                - CustomAuthFilter
 
             - id: ranking-service
               uri: lb://RANKING-SERVICE
               predicates:
                 - Path=/api/rankings/**
+              filters:
+                - CustomAuthFilter
 
             - id: trade-service
               uri: lb://TRADE-SERVICE
               predicates:
                 - Path=/api/trades/**
+              filters:
+                - CustomAuthFilter
 
             - id: asset-service
               uri: lb://ASSET-SERVICE
               predicates:
                 - Path=/api/assets/**,/api/accounts/**,/api/holdings/**
+              filters:
+                - CustomAuthFilter
 
             - id: assistant-service
               uri: lb://ASSISTANT-SERVICE
               predicates:
                 - Path=/api/assistants/**
+              filters:
+                - CustomAuthFilter
 
             - id: notification-service
               uri: lb://NOTIFICATION-SERVICE
               predicates:
                 - Path=/api/notifications/**
+              filters:
+                - CustomAuthFilter
   application:
     name: api-gateway
   config:
