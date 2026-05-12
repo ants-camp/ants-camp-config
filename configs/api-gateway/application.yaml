@@ -7,8 +7,6 @@ jwt:
 spring:
   cloud:
     gateway:
-      server:
-        webflux:
           routes:
             - id: user-service
               uri: lb://USER-SERVICE
