@@ -31,10 +31,19 @@ spring:
     consumer:
       group-id: ranking-service
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      # ErrorHandlingDeserializer로 감싸기
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
-        spring.json.trusted.packages: "io.antcamp.rankingservice.domain.event"
+        # 실제 역직렬화 위임
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        # 신뢰 패키지
+        spring.json.trusted.packages: "io.antcamp.rankingservice.domain.event,io.antcamp.*"
+        # type header 안 쓰고 @KafkaListener 시그니처로 타입 추론
+        spring.json.use.type.headers: false
+        # 또는 토픽별로 default type 지정하고 싶으면:
+        # spring.json.value.default.type: io.antcamp.rankingservice.domain.event.AssetTotalCalculatedEvent
 
 server:
   port: ${RANKING_SERVICE_PORT:8094}
