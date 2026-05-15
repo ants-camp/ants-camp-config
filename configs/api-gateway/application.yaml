@@ -41,6 +41,20 @@ spring:
           filters:
             - CustomAuthFilter
 
+        - id: trade-service-stocks
+          uri: lb://TRADE-SERVICE
+          predicates:
+            - Path=/api/stocks/**
+          filters:
+            - CustomAuthFilter
+
+        - id: trade-service-market
+          uri: lb://TRADE-SERVICE
+          predicates:
+            - Path=/api/market/**
+          filters:
+            - CustomAuthFilter
+
         - id: asset-service
           uri: lb://ASSET-SERVICE
           predicates:
