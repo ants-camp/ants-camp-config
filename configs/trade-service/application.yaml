@@ -102,10 +102,6 @@ kis:
   ws:
     url: ${KIS_WS_URL:}
 
-feign:
-  url:
-    asset: ${ASSET_SERVER_URL}
-
 resilience4j:
   retry:
     instances:
