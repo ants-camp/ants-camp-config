@@ -75,6 +75,13 @@ spring:
             - Path=/api/notifications/**
           filters:
             - CustomAuthFilter
+
+        - id: admin-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/admin/**
+          filters:
+            - CustomAuthFilter
   application:
     name: api-gateway
   config:
