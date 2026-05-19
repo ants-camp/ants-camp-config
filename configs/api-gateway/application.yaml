@@ -82,6 +82,11 @@ spring:
             - Path=/api/admin/**
           filters:
             - CustomAuthFilter
+
+        - id: trade-service-websocket
+          uri: lb:ws://TRADE-SERVICE
+          predicates:
+            - Path=/ws-stomp/**
   application:
     name: api-gateway
   config:
